@@ -1,1 +1,5 @@
+org\entity\Client.class
+org\repository\FileWork.class
+org\entity\Role.class
 org\example\Main.class
+org\repository\RepositoryClient.class

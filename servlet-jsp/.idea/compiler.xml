@@ -6,8 +6,14 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="servlet-jsp" />
+        <module name="multi-core" />
+        <module name="multi-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api" target="17" />
+      <module name="core" target="17" />
+      <module name="gto" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -2,7 +2,6 @@ package multi.api.mapping;
 
 import multi.api.dto.ProductRequest;
 import multi.api.dto.ProductResponse;
-
 import multi.core.domain.Product;
 
 public class ProductMapping {

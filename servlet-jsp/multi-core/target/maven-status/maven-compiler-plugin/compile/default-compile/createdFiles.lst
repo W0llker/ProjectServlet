@@ -1,0 +1,9 @@
+multi\core\controler\ClientController.class
+multi\core\domain\Client.class
+multi\core\repository\RepositoryProduct.class
+multi\core\service\ClientService.class
+multi\core\domain\Role.class
+multi\core\repository\RepositoryClient.class
+multi\core\Main.class
+multi\core\domain\Product.class
+multi\core\domain\TypeProduct.class

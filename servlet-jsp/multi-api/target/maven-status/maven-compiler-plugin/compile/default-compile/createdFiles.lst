@@ -1,0 +1,5 @@
+multi\api\contract\ClientApi.class
+multi\api\dto\UserRequest.class
+multi\api\mapping\UserMapping.class
+multi\api\Main.class
+multi\api\dto\UserResponse.class

@@ -1,5 +1,8 @@
+multi\api\mapping\ProductMapper.class
 multi\api\contract\ClientApi.class
 multi\api\dto\UserRequest.class
-multi\api\mapping\UserMapping.class
+multi\api\mapping\UserMapper.class
 multi\api\Main.class
 multi\api\dto\UserResponse.class
+multi\api\dto\ProductRequest.class
+multi\api\dto\ProductResponse.class

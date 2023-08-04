@@ -6,7 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="multi-core" />
+        <module name="multi-basic" />
+        <module name="multi-domain" />
         <module name="multi-api" />
       </profile>
     </annotationProcessing>
@@ -14,6 +15,7 @@
       <module name="api" target="17" />
       <module name="core" target="17" />
       <module name="gto" target="17" />
+      <module name="multi-core" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

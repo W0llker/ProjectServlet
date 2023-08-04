@@ -1,6 +1,7 @@
 package multi.api.dto;
 
-import multi.core.domain.TypeProduct;
+
+import multi.domain.TypeProduct;
 
 public class ProductResponse {
     private long id;

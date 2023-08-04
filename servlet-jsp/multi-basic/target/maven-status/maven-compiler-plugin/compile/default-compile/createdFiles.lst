@@ -1,0 +1,6 @@
+multi\basic\Main.class
+multi\basic\service\ClientService.class
+multi\basic\repository\RepositoryProduct.class
+multi\basic\config\ApplicationContext.class
+multi\basic\repository\RepositoryClient.class
+multi\basic\controler\ClientController.class

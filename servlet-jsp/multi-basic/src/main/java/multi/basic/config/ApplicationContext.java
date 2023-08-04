@@ -32,4 +32,7 @@ public class ApplicationContext {
     public ClientService getClientService() {
         return clientService;
     }
+    public RepositoryClient getRepositoryClient() {
+        return repositoryClient;
+    }
 }

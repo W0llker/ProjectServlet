@@ -7,8 +7,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="multi-basic" />
-        <module name="multi-domain" />
         <module name="multi-api" />
+        <module name="multi-domain" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -16,6 +16,7 @@
       <module name="core" target="17" />
       <module name="gto" target="17" />
       <module name="multi-core" target="17" />
+      <module name="src" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -2,6 +2,7 @@ package multi.basic.repository;
 
 
 import multi.domain.Client;
+import multi.domain.Role;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -26,8 +27,10 @@ public class RepositoryClient {
             if (deserialization().size() > 0) {
                 Optional<Client> optional = deserialization().stream().max(Comparator.comparing(Client::getId));
                 client.setId(optional.get().getId() + 1);
+                client.setRole(Role.CLIENT);
             } else {
                 client.setId(0);
+                client.setRole(Role.ADMIN);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

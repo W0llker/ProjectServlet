@@ -1,6 +1,0 @@
-target/
-/shelf/
-/workspace.xml
-/.idea
-!**/src/main/**/target/
-!**/src/test/**/target/

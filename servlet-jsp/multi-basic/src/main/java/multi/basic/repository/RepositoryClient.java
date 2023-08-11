@@ -59,21 +59,26 @@ public class RepositoryClient {
     public List<Client> getList() {
         return deserialization();
     }
-
+/*
+Добавить нормальный эксепшн!!!!!
+ */
     private List<Client> deserialization() {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(path))) {
             list = (List<Client>) objectInputStream.readObject();
         } catch (Exception e) {
-
+            System.err.println("Не удалось получить пользователей");
+            //throw new Exception("Ошибка");
         }
         return list;
     }
-
+/*
+Добавить нормальный эксепшн!!!!!
+*/
     private void serialization(List<Client> clientList) {
         try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(path))) {
             stream.writeObject(clientList);
         } catch (Exception e) {
-
+            //throw new Exception("Ошибка");
         }
     }
 }

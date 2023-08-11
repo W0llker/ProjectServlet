@@ -1,23 +1,15 @@
 package multi.basic.servlets;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import multi.api.dto.UserRequest;
-import multi.api.mapping.UserMapper;
 import multi.basic.config.ApplicationContext;
 import multi.basic.repository.RepositoryClient;
 import multi.domain.Client;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Enumeration;
-import java.util.List;
 
 public class RegistrationServlet extends HttpServlet {
     @Override

@@ -1,4 +1,4 @@
-package multi.api.mapping;
+package multi.basic.mapping;
 
 
 import multi.api.dto.UserRequest;

@@ -1,6 +1,7 @@
 package multi.api.dto;
 
-import multi.core.domain.Role;
+
+import multi.domain.Role;
 
 public class UserResponse {
     private long id;

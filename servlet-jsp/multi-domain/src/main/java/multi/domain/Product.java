@@ -1,19 +1,30 @@
-package multi.api.dto;
+package multi.domain;
 
+import java.io.Serial;
+import java.io.Serializable;
 
-import multi.domain.TypeProduct;
-
-public class ProductRequest {
+public class Product implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -5614387957786689456L;
+    private long id;
     private TypeProduct typeGood;
     private String nameProduct;
     private long codeProduct;
     private double price;
 
-    public ProductRequest(TypeProduct typeGood, String nameProduct, long codeProduct, double price) {
+    public Product(TypeProduct typeGood, String nameProduct, long codeProduct, double price) {
         this.typeGood = typeGood;
         this.nameProduct = nameProduct;
         this.codeProduct = codeProduct;
         this.price = price;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public TypeProduct getTypeGood() {
@@ -46,5 +57,16 @@ public class ProductRequest {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", typeGood=" + typeGood +
+                ", nameProduct='" + nameProduct + '\'' +
+                ", codeProduct=" + codeProduct +
+                ", price=" + price +
+                "\n}";
     }
 }

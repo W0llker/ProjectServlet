@@ -46,10 +46,12 @@ public class RepositoryProduct {
         list = getList();
         Optional<Product> optional = list.stream().filter(client -> client.getId() == id).findFirst();
         if (optional.isEmpty()) {
-            System.out.println("Такого клиента нету");
             return null;
         }
         return optional.get();
+    }
+    public void update() {
+        serialization(list);
     }
 
     public List<Product> getList() {
@@ -64,7 +66,6 @@ public class RepositoryProduct {
         }
         return list;
     }
-
     private void serialization(List<Product> clientList) {
         try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(path))) {
             stream.writeObject(clientList);

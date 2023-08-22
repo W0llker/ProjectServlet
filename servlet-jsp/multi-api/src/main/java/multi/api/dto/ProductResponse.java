@@ -17,4 +17,55 @@ public class ProductResponse {
         this.codeProduct = codeProduct;
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return
+                "id=" + id +
+                " Тип товара=" + typeGood +
+                " имя товара='" + nameProduct + '\'' +
+                " код товара=" + codeProduct +
+                " цена=" + price +
+                "\n";
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public TypeProduct getTypeGood() {
+        return typeGood;
+    }
+
+    public void setTypeGood(TypeProduct typeGood) {
+        this.typeGood = typeGood;
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
+    }
+
+    public long getCodeProduct() {
+        return codeProduct;
+    }
+
+    public void setCodeProduct(long codeProduct) {
+        this.codeProduct = codeProduct;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

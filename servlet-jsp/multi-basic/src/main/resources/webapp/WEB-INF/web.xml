@@ -5,12 +5,30 @@
 
     <servlet>
         <servlet-name>AuthenticationServlet</servlet-name>
-        <servlet-class>multi.basic.servlets.AuthenticationServlet</servlet-class>
+        <servlet-class>multi.basic.controller.client.AuthenticationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registration</servlet-name>
+        <servlet-class>multi.basic.controller.client.RegistrationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Product</servlet-name>
+        <servlet-class>multi.basic.controller.product.ProductServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Product</servlet-name>
+        <url-pattern>/Product</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>AuthenticationServlet</servlet-name>
         <url-pattern>/AuthenticationServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Registration</servlet-name>
+        <url-pattern>/Registration</url-pattern>
     </servlet-mapping>
 
 </web-app>

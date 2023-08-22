@@ -1,22 +1,70 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Авторизация</title>
+  <title>Форма входа</title>
+  <style>
+   <style>
+      h2 {
+        color: #333;
+      }
+
+      img {
+        width: 200px;
+        border-radius: 50%;
+        margin-bottom: 20px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        width: 200px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      input[type="submit"] {
+        background: #4CAF50;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      input[type="submit"]:hover {
+        background: #45a049;
+      }
+    body {
+      background: #f1f1f1;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-<h1>
-    <center>Авторизация!</center>
-</h1>
-<form   name="Form"
-        method="get"
-        action="http://localhost:8080/AuthenticationServlet">
-    <center>
-        <p><input type="text" name="login" placeholder="Логин" required></p>
-        <p><input type="text" name="password" placeholder="Пароль" required></p>
-        <input type=submit value="Войти">
-        <h6> если вы не зарегистрированы, то пройдите <a href="/authentication/registration.jsp">Регистрацию</a></h6>
-    </center>
-</form>
+  <div class="container">
+    <h2>Форма входа</h2>
+    <img src="image/EazFDI9WoAEHsQ1.jpg" alt="Лиса">
+    <form     name="Form"
+              method="post"
+              action="http://localhost:8080/AuthenticationServlet">
+      <input type="text" id="login" name="login" placeholder="Логин">
+      <input type="password" id="password" name="password" placeholder="Пароль">
+      <input type="submit" value="Войти">
+    </form>
+    <h6 style="color: red">${error}</h6>
+    <p>Нет аккаунта? <a href="authentication/registration.jsp">Зарегистрируйтесь</a></p>
+  </div>
 </body>
 </html>

@@ -42,43 +42,26 @@ public class RepositoryClient {
     public void delete(long id) {
         list = getList();
         list.removeIf(client -> client.getId() == id);
-        System.out.println(list);
         serialization(list);
     }
-
-    public Client find(long id) {
-        list = getList();
-        Optional<Client> optional = list.stream().filter(client -> client.getId() == id).findFirst();
-        if (optional.isEmpty()) {
-            System.out.println("Такого клиента нету");
-            return null;
-        }
-        return optional.get();
-    }
-
     public List<Client> getList() {
         return deserialization();
     }
-/*
-Добавить нормальный эксепшн!!!!!
- */
+
     private List<Client> deserialization() {
         try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(path))) {
             list = (List<Client>) objectInputStream.readObject();
         } catch (Exception e) {
-            System.err.println("Не удалось получить пользователей");
-            //throw new Exception("Ошибка");
+            throw new RuntimeException("Не удалось получить пользователей");
         }
         return list;
     }
-/*
-Добавить нормальный эксепшн!!!!!
-*/
+
     private void serialization(List<Client> clientList) {
         try (ObjectOutputStream stream = new ObjectOutputStream(new FileOutputStream(path))) {
             stream.writeObject(clientList);
         } catch (Exception e) {
-            //throw new Exception("Ошибка");
+            throw new RuntimeException("Не удалось сохранить");
         }
     }
 }

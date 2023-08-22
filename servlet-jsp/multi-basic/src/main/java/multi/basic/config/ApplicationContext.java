@@ -1,8 +1,8 @@
 package multi.basic.config;
 
 
-import multi.api.mapping.ProductMapper;
-import multi.api.mapping.UserMapper;
+import multi.basic.mapping.ProductMapper;
+import multi.basic.mapping.UserMapper;
 import multi.basic.repository.RepositoryClient;
 import multi.basic.repository.RepositoryProduct;
 import multi.basic.service.ClientService;

@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -9,7 +10,7 @@
 </h1>
 <form   name="Form"
         method="post"
-        action="http://localhost:8082/tomcat/RegistrationServlet">
+        action="http://localhost:8080/AuthenticationServlet">
     <center>
         <p><input type="text" name="name" placeholder="Имя" size="25" required></p>
         <p><input type="text" name="surName" placeholder="Фамилия" size="25" required></p>

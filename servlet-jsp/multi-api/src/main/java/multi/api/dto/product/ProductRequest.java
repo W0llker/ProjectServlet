@@ -1,4 +1,4 @@
-package multi.api.dto;
+package multi.api.dto.product;
 
 
 import multi.domain.TypeProduct;

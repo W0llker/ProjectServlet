@@ -1,6 +1,7 @@
-<%@ page language="java" pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
-<html>
+<%@ page pageEncoding="UTF-8" contentType="text/html;charset=UTF-8"%>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
   <title>Форма входа</title>
   <style>
    <style>
@@ -58,13 +59,13 @@
     <img src="image/EazFDI9WoAEHsQ1.jpg" alt="Лиса">
     <form     name="Form"
               method="post"
-              action="http://localhost:8080/AuthenticationServlet">
+              action="http://localhost:8080/login">
       <input type="text" id="login" name="login" placeholder="Логин">
       <input type="password" id="password" name="password" placeholder="Пароль">
       <input type="submit" value="Войти">
     </form>
     <h6 style="color: red">${error}</h6>
-    <p>Нет аккаунта? <a href="authentication/registration.jsp">Зарегистрируйтесь</a></p>
+    <p>Нет аккаунта? <a href="/registration">Зарегистрируйтесь</a></p>
   </div>
 </body>
 </html>

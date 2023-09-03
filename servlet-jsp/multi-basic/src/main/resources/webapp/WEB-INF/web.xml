@@ -12,23 +12,57 @@
         <servlet-class>multi.basic.controller.client.RegistrationServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Product</servlet-name>
-        <servlet-class>multi.basic.controller.product.ProductServlet</servlet-class>
+        <servlet-name>Basket</servlet-name>
+        <servlet-class>multi.basic.controller.basket.BasketServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>actionAdmin</servlet-name>
+        <servlet-class>multi.basic.controller.product.ProductAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>actionClient</servlet-name>
+        <servlet-class>multi.basic.controller.order.OrderServlet</servlet-class>
+    </servlet>
+    <filter>
+        <filter-name>admin</filter-name>
+        <filter-class>multi.basic.filter.AdminFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>authentication</filter-name>
+        <filter-class>multi.basic.filter.ClientFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>admin</filter-name>
+        <url-pattern>/actionAdmin</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>authentication</filter-name>
+        <url-pattern>/actionClient</url-pattern>
+    </filter-mapping>
 
     <servlet-mapping>
-        <servlet-name>Product</servlet-name>
-        <url-pattern>/Product</url-pattern>
+        <servlet-name>actionClient</servlet-name>
+        <url-pattern>/actionClient</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>Basket</servlet-name>
+        <url-pattern>/basket</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>actionAdmin</servlet-name>
+        <url-pattern>/actionAdmin</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>AuthenticationServlet</servlet-name>
-        <url-pattern>/AuthenticationServlet</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>Registration</servlet-name>
-        <url-pattern>/Registration</url-pattern>
+        <url-pattern>/registration</url-pattern>
     </servlet-mapping>
 
 </web-app>

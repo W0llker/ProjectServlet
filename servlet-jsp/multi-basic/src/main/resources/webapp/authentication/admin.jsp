@@ -111,7 +111,7 @@
 
 <main>
     <!-- Форма для добавления товара -->
-    <form action="http://localhost:8080/Product" method="post">
+    <form action="http://localhost:8080/actionAdmin" method="post">
         <input type="hidden" name="addProduct" value="add">
         <div class="form-row">
             <label for="type">Тип товара:</label>
@@ -142,14 +142,14 @@
     </form>
 
     <!-- Форма для изменения товара -->
-    <form action="http://localhost:8080/Product" method="post">
+    <form action="http://localhost:8080/actionAdmin" method="post">
         <input type="hidden" name="editProduct" value="edit">
         <div class="form-row">
             <label for="edit_id">ID товара:</label>
             <select name="edit_id" id="edit_id">
              <c:forEach var="product" items="${products}">
              <c:out value="${product}" />
-             <option value="${product.id}">"${product.id}"</option>
+             <option value="${product.id}">${product.id}</option>
              </c:forEach>
              </select>
         </div>
@@ -183,7 +183,7 @@
     </form>
 
     <!-- Форма для удаления товара -->
-    <form action="http://localhost:8080/Product" method="post">
+    <form action="http://localhost:8080/actionAdmin" method="post">
     <input type="hidden" name="deleteProduct" value="delete">
         <div class="form-row">
             <label for="delete_id">ID товара:</label>
@@ -193,17 +193,13 @@
     </form>
 
     <!-- Форма для просмотра списка товаров -->
-    <form action="http://localhost:8080/Product" method="post">
+    <form action="http://localhost:8080/actionAdmin" method="get">
     <input type="hidden" name="showProduct" value="show">
         <div class="product-list">
                 <c:forEach var="product" items="${products}">
                      <h5><c:out value="${product}" />
                      <br></h5>
                 </c:forEach>
-            <!-- Здесь будет генерация списка товаров по клику на кнопку "Обновить" -->
-        </div>
-        <div class="button-container">
-            <button type="submit">Обновить товары</button>
         </div>
     </form>
 </main>

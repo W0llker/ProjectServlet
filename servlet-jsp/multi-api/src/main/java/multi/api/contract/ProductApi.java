@@ -1,14 +1,13 @@
 package multi.api.contract;
 
-import multi.api.dto.ProductRequest;
-import multi.api.dto.ProductResponse;
-import multi.domain.Product;
+import multi.api.dto.product.ProductRequest;
+import multi.api.dto.product.ProductResponse;
 
 import java.util.List;
 
 public interface ProductApi {
     void createProduct(ProductRequest productRequest);
-    void updateProduct(int id, ProductRequest productRequest);
+    void updateProduct(long id, ProductRequest productRequest);
     void deleteProduct(int id);
     List<ProductResponse> showProduct();
 }

@@ -5,6 +5,6 @@ import multi.domain.Basket;
 
 public class BasketMapper {
     public BasketResponse createBasketResponse(Basket basket) {
-        return new BasketResponse(basket.getId(), basket.getCount(),basket.getProductId());
+        return new BasketResponse(basket.getId(), basket.getCount(), basket.getProductId());
     }
 }

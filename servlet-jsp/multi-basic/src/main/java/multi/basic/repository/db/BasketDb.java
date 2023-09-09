@@ -1,27 +1,24 @@
 package multi.basic.repository.db;
 
+import multi.api.exception.basket.BasketDbException;
 import multi.basic.repository.BasketDao;
 import multi.basic.repository.driver.DriverDataBases;
 import multi.domain.Basket;
-import multi.domain.Order;
 
-import java.lang.reflect.Field;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-public class BasketDb implements BasketDao {
+public class BasketDb extends DbWork<Basket> implements BasketDao {
     private final DriverDataBases driverDataBases;
-    private final EntityMapper<Basket> basketEntityMapper;
 
     public BasketDb(DriverDataBases driverDataBases, EntityMapper<Basket> basketEntityMapper) {
+        super(basketEntityMapper);
         this.driverDataBases = driverDataBases;
-        this.basketEntityMapper = basketEntityMapper;
+
     }
 
     @Override
@@ -37,7 +34,7 @@ public class BasketDb implements BasketDao {
             preparedStatement.execute();
             return basket;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new BasketDbException("Невозможно сохранить");
         }
     }
 
@@ -50,7 +47,7 @@ public class BasketDb implements BasketDao {
             Long id = resultSet.getLong(1);
             return id + 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new BasketDbException("Не удалось получить макс первичный ключ");
         }
     }
 
@@ -62,29 +59,19 @@ public class BasketDb implements BasketDao {
             preparedStatement.setLong(1, id);
             preparedStatement.execute();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new BasketDbException("Невозможно удалить корзину");
         }
     }
 
     @Override
     public List<Basket> getBasketsByUser(long orderId) {
         try {
-            List<Basket> baskets = new ArrayList<>();
             Connection connection = driverDataBases.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM storesch.basket b WHERE b.order_id=?");
             preparedStatement.setLong(1, orderId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            Field[] fields = Basket.class.getDeclaredFields();
-            while (resultSet.next()) {
-                Map<String, String> map = new LinkedHashMap<>();
-                for (int i = 1; i < resultSet.getMetaData().getColumnCount() + 1; i++) {
-              map.put(fields[i].getName(), resultSet.getString(i));
-        }
-        baskets.add(basketEntityMapper.mapperInEntity(map));
-    }
-            return baskets;
-        } catch (Exception e) {
-            throw new RuntimeException("Не удалось получить данные о клиентах");
+            return getEntity(preparedStatement.executeQuery(), new Basket());
+        } catch (SQLException e) {
+            throw new BasketDbException("Невозможно получить данные");
         }
     }
 
@@ -94,16 +81,10 @@ public class BasketDb implements BasketDao {
             Connection connection = driverDataBases.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM storesch.basket b WHERE b.id=?");
             preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            Field[] fields = Basket.class.getDeclaredFields();
-            Map<String, String> map = new LinkedHashMap<>();
-            for (int i = 1; i < resultSet.getMetaData().getColumnCount() + 1; i++) {
-                map.put(fields[i].getName(), resultSet.getString(i));
-            }
-            return basketEntityMapper.mapperInEntity(map);
+            List<Basket> baskets = getEntity(preparedStatement.executeQuery(), new Basket());
+            return baskets.size() > 0 ? baskets.get(0) : null;
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new BasketDbException("Невозможно получить данные");
         }
     }
 }

@@ -38,6 +38,7 @@
     <filter-mapping>
         <filter-name>authentication</filter-name>
         <url-pattern>/actionClient</url-pattern>
+        <url-pattern>/basket</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>

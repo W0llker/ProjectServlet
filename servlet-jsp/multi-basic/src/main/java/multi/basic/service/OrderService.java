@@ -3,17 +3,16 @@ package multi.basic.service;
 import multi.api.contract.OrderApi;
 import multi.api.dto.basket.BasketResponse;
 import multi.api.dto.basket.OrderDto;
+import multi.api.dto.order.OrderRequest;
 import multi.api.dto.order.OrderResponse;
 import multi.api.dto.product.ProductResponse;
+import multi.api.exception.basket.BasketDbException;
 import multi.basic.mapping.BasketMapper;
 import multi.basic.mapping.OrderMapper;
 import multi.basic.mapping.ProductMapper;
 import multi.basic.repository.BasketDao;
 import multi.basic.repository.OrderDao;
 import multi.basic.repository.ProductDao;
-import multi.basic.repository.file.RepositoryBasket;
-import multi.basic.repository.file.RepositoryOrder;
-import multi.basic.repository.file.RepositoryProduct;
 import multi.domain.Basket;
 import multi.domain.Order;
 import multi.domain.Product;
@@ -43,8 +42,8 @@ public class OrderService implements OrderApi {
     public OrderResponse createOrder(long userId) {
         Order order;
         Optional<Order> cheakOrder = repositoryOrder.findOrderByUserId(userId).stream().filter(order1 -> order1.getStatus() == StatusOrder.NOT_FORMED).findFirst();
-        if(cheakOrder.isEmpty()) {
-            order = new Order(0,userId,0,StatusOrder.NOT_FORMED);
+        if (cheakOrder.isEmpty()) {
+            order = new Order(0, userId, 0, StatusOrder.NOT_FORMED);
             repositoryOrder.save(order);
         } else order = cheakOrder.get();
         return orderMapper.createResponse(order);
@@ -56,18 +55,21 @@ public class OrderService implements OrderApi {
     }
 
     @Override
-    public OrderResponse changeStatus(long orderId, StatusOrder statusOrder) {
-        return null;
+    public OrderResponse changeStatus(OrderRequest orderRequest, StatusOrder statusOrder) {
+        Order order = orderMapper.createOrder(orderRequest);
+        order.setStatus(statusOrder);
+        repositoryOrder.update(order);
+        return orderMapper.createResponse(order);
     }
 
     @Override
-    public OrderDto getOrderOrderId(long orderId) {
+    public OrderDto getOrderOrderId(long orderId) throws BasketDbException {
         Order order = repositoryOrder.findById(orderId);
         List<Basket> baskets = repositoryBasket.getBasketsByUser(orderId);
         List<Long> productIds = baskets.stream().map(Basket::getProductId).toList();
         List<Product> productList = repositoryProduct.findProductByIds(productIds);
         List<ProductResponse> productResponses = productList.stream().map(product -> productMapper.createResponse(product)).toList();
         List<BasketResponse> basketResponses = baskets.stream().map(basket -> basketMapper.createBasketResponse(basket)).toList();
-        return orderMapper.createOrderDto(order,productResponses,basketResponses);
+        return orderMapper.createOrderDto(order, productResponses, basketResponses);
     }
 }

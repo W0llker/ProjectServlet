@@ -32,6 +32,11 @@ public class RepositoryProduct extends FileWork<Product> implements ProductDao {
     }
 
     @Override
+    public Product findProductByCode(Long code) {
+        return null;
+    }
+
+    @Override
     public List<Product> findProductByIds(List<Long> longs) {
         return longs.stream().flatMap(x -> deserialization().stream().filter(product -> product.getId() == x)).collect(Collectors.toList());
     }

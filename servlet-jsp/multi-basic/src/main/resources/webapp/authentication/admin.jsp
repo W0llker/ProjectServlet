@@ -71,7 +71,29 @@
         .form-row input {
             margin-right: 10px;
         }
+        .logout-button {
+             background-color: #f44336;
+             color: white;
+             padding: 10px 20px;
+             text-align: center;
+             ext-decoration: none;
+             display: inline-block;
+             font-size: 16px;
+             border: none;
+             border-radius: 5px;
+             cursor: pointer;
+             transition: background-color 0.3s ease;
+        }
 
+        .logout-button:hover {
+            background-color: #d32f2f;
+        }
+
+        .logout-container {
+            position: fixed;
+            top: 800px;
+            right: 20px;
+        }
         .form-row input[type="submit"] {
             background-color: #4CAF50;
             color: #fff;
@@ -108,10 +130,15 @@
 <header>
     <h1>Администрация!</h1>
 </header>
-
+<c:out value="${error}" />
+<div class="logout-container">
+       <form action="/actionAdmin" method="POST">
+          <input type="hidden" name="logout" value="выход">
+          <input type="submit" class="logout-button" value="Выход">
+       </form>
+</div>
 <main>
-    <!-- Форма для добавления товара -->
-    <form action="http://localhost:8080/actionAdmin" method="post">
+    <form action="/actionAdmin" method="post">
         <input type="hidden" name="addProduct" value="add">
         <div class="form-row">
             <label for="type">Тип товара:</label>
@@ -119,7 +146,6 @@
                 <option value="COMPUTER">Компьютеры</option>
                 <option value="MOBILE_PHONE">Мобильный телефон</option>
                 <option value="ACCESSORIES">Комплектующие</option>
-                <!-- Добавьте здесь другие варианты типов товаров -->
             </select>
         </div>
 
@@ -130,19 +156,16 @@
 
         <div class="form-row">
             <label for="code">Код:</label>
-            <input type="number" name="code" id="code">
+            <input type="number" name="code" id="code" min="1" value="1">
         </div>
 
         <div class="form-row">
             <label for="price">Цена:</label>
-            <input type="number" name="price" id="price">
+            <input type="number" name="price" id="price" min="1" value="1">
         </div>
-
         <input type="submit" value="Добавить товар">
     </form>
-
-    <!-- Форма для изменения товара -->
-    <form action="http://localhost:8080/actionAdmin" method="post">
+    <form action="/actionAdmin" method="post">
         <input type="hidden" name="editProduct" value="edit">
         <div class="form-row">
             <label for="edit_id">ID товара:</label>
@@ -160,7 +183,6 @@
                 <option value="COMPUTER">Компьютеры</option>
                 <option value="MOBILE_PHONE">Мобильный телефон</option>
                 <option value="ACCESSORIES">Комплектующие</option>
-                <!-- Добавьте здесь другие варианты типов товаров -->
             </select>
         </div>
 
@@ -171,19 +193,18 @@
 
         <div class="form-row">
             <label for="edit_code">Код:</label>
-            <input type="text" name="edit_code" id="edit_code">
+            <input type="number" name="edit_code" id="edit_code" min="1" value="1">
         </div>
 
         <div class="form-row">
             <label for="edit_price">Цена:</label>
-            <input type="text" name="edit_price" id="edit_price">
+            <input type="number" name="edit_price" id="edit_price" min="1" value="1">
         </div>
-
         <input type="submit" value="Изменить товар">
     </form>
 
-    <!-- Форма для удаления товара -->
-    <form action="http://localhost:8080/actionAdmin" method="post">
+
+    <form action="/actionAdmin" method="post">
     <input type="hidden" name="deleteProduct" value="delete">
         <div class="form-row">
             <label for="delete_id">ID товара:</label>
@@ -192,8 +213,7 @@
         <input type="submit" value="Удалить товар">
     </form>
 
-    <!-- Форма для просмотра списка товаров -->
-    <form action="http://localhost:8080/actionAdmin" method="get">
+    <form action="/actionAdmin" method="get">
     <input type="hidden" name="showProduct" value="show">
         <div class="product-list">
                 <c:forEach var="product" items="${products}">

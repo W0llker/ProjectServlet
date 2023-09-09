@@ -10,6 +10,30 @@
             padding: 0;
         }
 
+        .logout-button {
+          background-color: #f44336;
+          color: white;
+          padding: 10px 20px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .logout-button:hover {
+          background-color: #d32f2f;
+        }
+
+        .logout-container {
+          position: fixed;
+          top: 800px;
+          right: 20px;
+        }
+
         header {
             background-color: #333;
             color: #fff;
@@ -91,6 +115,12 @@
   </form>
 </header>
 <main>
+<div class="logout-container">
+       <form action="/actionClient" method="POST">
+          <input type="hidden" name="logout" value="выход">
+          <input type="submit" class="logout-button" value="Выход">
+       </form>
+</div>
     <c:forEach var="product" items="${products}">
             <div class="product">
                 <img src="image/${product.typeGood}.jpg" alt="Товар 1">
@@ -105,7 +135,7 @@
                     </form>
                 </div>
             </div>
-        </c:forEach>
+    </c:forEach>
 </main>
 </body>
 </html>

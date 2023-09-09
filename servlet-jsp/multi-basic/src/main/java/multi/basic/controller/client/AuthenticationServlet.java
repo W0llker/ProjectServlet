@@ -51,6 +51,7 @@ public class AuthenticationServlet extends HttpServlet {
     }
     private void preparation(HttpServletRequest req, UserResponse user) {
         req.getSession(true).setAttribute("userAuth", user);
+        req.getSession().setMaxInactiveInterval(10);
         OrderResponse orderResponse = orderService.createOrder(user.getId());
         req.getSession(false).setAttribute("order", orderResponse);
     }

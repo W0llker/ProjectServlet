@@ -23,6 +23,11 @@
         <servlet-name>actionClient</servlet-name>
         <servlet-class>multi.basic.controller.order.OrderServlet</servlet-class>
     </servlet>
+
+    <listener>
+        <listener-class>multi.basic.controller.SessionListener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>admin</filter-name>
         <filter-class>multi.basic.filter.AdminFilter</filter-class>

@@ -24,7 +24,9 @@ public class BasketService implements BasketApi {
         repositoryBasket.save(basket);
         return basketMapper.createBasketResponse(basket);
     }
-
+    public void deleteBasketByOrderId(Long id) {
+        repositoryBasket.deleteByOrderId(id);
+    }
     @Override
     public void deleteBasket(long id) {
         repositoryBasket.delete(id);

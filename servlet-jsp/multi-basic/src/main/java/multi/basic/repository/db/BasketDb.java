@@ -64,6 +64,18 @@ public class BasketDb extends DbWork<Basket> implements BasketDao {
     }
 
     @Override
+    public void deleteByOrderId(Long id) {
+        try {
+            Connection connection = driverDataBases.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM storesch.basket b WHERE b.order_id=?");
+            preparedStatement.setLong(1, id);
+            preparedStatement.execute();
+        } catch (Exception e) {
+            throw new BasketDbException("Невозможно удалить корзину");
+        }
+    }
+
+    @Override
     public List<Basket> getBasketsByUser(long orderId) {
         try {
             Connection connection = driverDataBases.getConnection();

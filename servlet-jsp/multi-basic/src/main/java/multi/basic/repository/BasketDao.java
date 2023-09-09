@@ -9,6 +9,8 @@ public interface BasketDao {
 
     void delete(long id);
 
+    void deleteByOrderId(Long id);
+
     List<Basket> getBasketsByUser(long orderId);
 
     Basket findById(int sessionId);

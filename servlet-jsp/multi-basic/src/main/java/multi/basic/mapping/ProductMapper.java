@@ -1,8 +1,8 @@
 package multi.basic.mapping;
 
 
-import multi.api.dto.ProductRequest;
-import multi.api.dto.ProductResponse;
+import multi.api.dto.product.ProductRequest;
+import multi.api.dto.product.ProductResponse;
 import multi.domain.Product;
 
 public class ProductMapper {

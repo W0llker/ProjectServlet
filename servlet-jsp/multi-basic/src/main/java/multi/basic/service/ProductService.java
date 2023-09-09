@@ -1,10 +1,11 @@
 package multi.basic.service;
 
 import multi.api.contract.ProductApi;
-import multi.api.dto.ProductRequest;
-import multi.api.dto.ProductResponse;
+import multi.api.dto.product.ProductRequest;
+import multi.api.dto.product.ProductResponse;
 import multi.basic.mapping.ProductMapper;
-import multi.basic.repository.RepositoryProduct;
+import multi.basic.repository.ProductDao;
+import multi.basic.repository.file.RepositoryProduct;
 import multi.domain.Product;
 
 import java.util.ArrayList;
@@ -12,10 +13,10 @@ import java.util.List;
 
 
 public class ProductService implements ProductApi {
-    private RepositoryProduct repositoryProduct;
+    private ProductDao repositoryProduct;
     private ProductMapper productMapper;
 
-    public ProductService(RepositoryProduct repositoryProduct, ProductMapper productMapper) {
+    public ProductService(ProductDao repositoryProduct, ProductMapper productMapper) {
         this.repositoryProduct = repositoryProduct;
         this.productMapper = productMapper;
     }
@@ -26,13 +27,10 @@ public class ProductService implements ProductApi {
     }
 
     @Override
-    public void updateProduct(int id, ProductRequest productRequest) {
-        Product product = repositoryProduct.find(id);
-        product.setCodeProduct(productRequest.getCodeProduct());
-        product.setNameProduct(productRequest.getNameProduct());
-        product.setTypeGood(productRequest.getTypeGood());
-        product.setPrice(productRequest.getPrice());
-        repositoryProduct.update();
+    public void updateProduct(long id, ProductRequest productRequest) {
+        Product product = productMapper.createProduct(productRequest);
+        product.setId(id);
+        repositoryProduct.update(product);
     }
 
     @Override
@@ -42,8 +40,9 @@ public class ProductService implements ProductApi {
 
     @Override
     public List<ProductResponse> showProduct() {
+        List<Product> products = repositoryProduct.getAllProduct();
         List<ProductResponse> list = new ArrayList<>();
-        for (Product product : repositoryProduct.getList()) {
+        for (Product product : products) {
             list.add(productMapper.createResponse(product));
         }
         return list;

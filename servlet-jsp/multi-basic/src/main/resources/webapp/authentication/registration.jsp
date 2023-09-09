@@ -88,7 +88,7 @@
 <body>
     <div class="register-container">
         <h2>Регистрация пользователя</h2>
-        <form name="Form" method="post" action="http://localhost:8080/Registration">
+        <form name="Form" method="post" action="http://localhost:8080/registration">
             <label for="firstname">Имя:</label>
             <input type="text" id="name" name="name">
 
@@ -105,7 +105,7 @@
         </form>
         <div class="register-link">
             <h5 style="color: red">${error}</h5>
-            <p>Уже есть аккаунт? <a href="/index.jsp">Войти</a></p>
+            <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
         </div>
     </div>
 </body>

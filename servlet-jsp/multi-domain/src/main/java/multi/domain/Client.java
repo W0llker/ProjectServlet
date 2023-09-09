@@ -14,19 +14,25 @@ public class Client implements Serializable {
     private String password;
     private Role role;
 
+    public Client() {
+    }
+
     public Client(String name, String surName, String login, String password) {
         this.name = name;
         this.surName = surName;
         this.login = login;
         this.password = password;
     }
-
     public long getId() {
         return id;
     }
 
-    public long setId(long id) {
+    public void setId(long id) {
         this.id = id;
+    }
+
+    private String setId(String id) {
+        this.id = Long.parseLong(id);
         return id;
     }
 
@@ -68,6 +74,9 @@ public class Client implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+    private void setRole(String role) {
+        this.setRole(Role.valueOf(role));
     }
 
     @Override

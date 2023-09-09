@@ -1,8 +1,8 @@
 package multi.basic.mapping;
 
 
-import multi.api.dto.UserRequest;
-import multi.api.dto.UserResponse;
+import multi.api.dto.user.UserRequest;
+import multi.api.dto.user.UserResponse;
 import multi.domain.Client;
 
 public class UserMapper {

@@ -1,4 +1,4 @@
-package multi.api.dto;
+package multi.api.dto.user;
 
 public class UserRequest {
     private String name;

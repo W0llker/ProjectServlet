@@ -12,6 +12,9 @@ public class Product implements Serializable {
     private long codeProduct;
     private double price;
 
+    public Product() {
+    }
+
     public Product(TypeProduct typeGood, String nameProduct, long codeProduct, double price) {
         this.typeGood = typeGood;
         this.nameProduct = nameProduct;
@@ -27,12 +30,20 @@ public class Product implements Serializable {
         this.id = id;
     }
 
+    private void setId(String id) {
+        this.id = Long.parseLong(id);
+    }
+
     public TypeProduct getTypeGood() {
         return typeGood;
     }
 
     public void setTypeGood(TypeProduct typeGood) {
         this.typeGood = typeGood;
+    }
+
+    private void setTypeGood(String typeGood) {
+        this.typeGood = TypeProduct.valueOf(typeGood);
     }
 
     public String getNameProduct() {
@@ -51,6 +62,10 @@ public class Product implements Serializable {
         this.codeProduct = codeProduct;
     }
 
+    private void setCodeProduct(String codeProduct) {
+        this.codeProduct = Long.parseLong(codeProduct);
+    }
+
     public double getPrice() {
         return price;
     }
@@ -59,9 +74,13 @@ public class Product implements Serializable {
         this.price = price;
     }
 
+    public void setPrice(String price) {
+        this.price = Double.parseDouble(price);
+    }
+
     @Override
     public String toString() {
-        return  "id=" + id +
+        return "id=" + id +
                 ", typeGood=" + typeGood +
                 ", nameProduct='" + nameProduct + '\'' +
                 ", codeProduct=" + codeProduct +

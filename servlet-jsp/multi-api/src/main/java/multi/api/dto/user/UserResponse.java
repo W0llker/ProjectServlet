@@ -1,4 +1,4 @@
-package multi.api.dto;
+package multi.api.dto.user;
 
 
 import multi.domain.Role;

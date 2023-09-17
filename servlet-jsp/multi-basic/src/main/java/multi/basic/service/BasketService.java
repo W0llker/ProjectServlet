@@ -2,7 +2,7 @@ package multi.basic.service;
 
 import multi.api.contract.BasketApi;
 import multi.api.dto.basket.BasketResponse;
-import multi.api.exception.basket.BasketDbException;
+import multi.basic.exception.basket.BasketDbException;
 import multi.basic.mapping.BasketMapper;
 import multi.basic.repository.BasketDao;
 import multi.domain.Basket;

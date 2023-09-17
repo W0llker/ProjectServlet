@@ -3,8 +3,7 @@ package multi.basic.service;
 import multi.api.contract.ProductApi;
 import multi.api.dto.product.ProductRequest;
 import multi.api.dto.product.ProductResponse;
-import multi.api.exception.product.ProductDbException;
-import multi.api.exception.product.ProductValidatorException;
+import multi.basic.exception.product.ProductValidatorException;
 import multi.basic.mapping.ProductMapper;
 import multi.basic.repository.ProductDao;
 import multi.domain.Product;
@@ -23,7 +22,7 @@ public class ProductService implements ProductApi {
     }
 
     @Override
-    public void createProduct(ProductRequest productRequest) throws ProductValidatorException {
+    public void createProduct(ProductRequest productRequest) {
         if (productRequest.getNameProduct().equals("") | productRequest.getCodeProduct() == 0 | productRequest.getPrice() == 0) {
             throw new ProductValidatorException("Введите данные");
         } else if (repositoryProduct.findProductByCode(productRequest.getCodeProduct()) != null) {
@@ -33,7 +32,7 @@ public class ProductService implements ProductApi {
     }
 
     @Override
-    public void updateProduct(long id, ProductRequest productRequest) throws ProductValidatorException {
+    public void updateProduct(long id, ProductRequest productRequest) {
         if (productRequest.getNameProduct().equals("") | productRequest.getCodeProduct() == 0 | productRequest.getPrice() == 0) {
             throw new ProductValidatorException("Введите данные");
         } else if (repositoryProduct.findProductByCode(productRequest.getCodeProduct()) != null && (repositoryProduct.findProductByCode(productRequest.getCodeProduct()).getId() != id)) {

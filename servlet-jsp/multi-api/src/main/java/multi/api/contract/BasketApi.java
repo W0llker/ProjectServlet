@@ -1,8 +1,6 @@
 package multi.api.contract;
 
 import multi.api.dto.basket.BasketResponse;
-import multi.api.exception.basket.BasketDbException;
-import multi.domain.Basket;
 
 import java.util.List;
 

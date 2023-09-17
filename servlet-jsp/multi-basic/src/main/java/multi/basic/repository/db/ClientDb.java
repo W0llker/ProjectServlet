@@ -1,6 +1,6 @@
 package multi.basic.repository.db;
 
-import multi.api.exception.client.ClientDbException;
+import multi.basic.exception.client.ClientDbException;
 import multi.basic.repository.ClientDao;
 import multi.basic.repository.driver.PostgresConnection;
 import multi.domain.Client;

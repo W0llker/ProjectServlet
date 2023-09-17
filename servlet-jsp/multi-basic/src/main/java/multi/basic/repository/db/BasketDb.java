@@ -1,6 +1,6 @@
 package multi.basic.repository.db;
 
-import multi.api.exception.basket.BasketDbException;
+import multi.basic.exception.basket.BasketDbException;
 import multi.basic.repository.BasketDao;
 import multi.basic.repository.driver.DriverDataBases;
 import multi.domain.Basket;

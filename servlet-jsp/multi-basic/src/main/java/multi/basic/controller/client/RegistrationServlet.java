@@ -6,8 +6,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import multi.api.contract.ClientApi;
 import multi.api.dto.user.UserRequest;
-import multi.api.exception.client.ClientDbException;
-import multi.api.exception.client.ClientValidatorException;
+import multi.basic.exception.client.ClientDbException;
+import multi.basic.exception.client.ClientValidatorException;
 import multi.basic.config.ApplicationContext;
 
 import java.io.IOException;

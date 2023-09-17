@@ -1,6 +1,6 @@
 package multi.basic.repository.db;
 
-import multi.api.exception.product.ProductDbException;
+import multi.basic.exception.product.ProductDbException;
 import multi.basic.repository.ProductDao;
 import multi.basic.repository.driver.DriverDataBases;
 import multi.domain.Product;

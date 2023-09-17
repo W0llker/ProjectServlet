@@ -9,9 +9,9 @@ import multi.api.contract.OrderApi;
 import multi.api.contract.ProductApi;
 import multi.api.dto.order.OrderResponse;
 import multi.api.dto.user.UserResponse;
-import multi.api.exception.client.ClientDbException;
+import multi.basic.exception.client.ClientDbException;
 import multi.basic.config.ApplicationContext;
-import multi.api.exception.client.UserNullException;
+import multi.basic.exception.client.UserNullException;
 import multi.domain.Role;
 
 import java.io.IOException;

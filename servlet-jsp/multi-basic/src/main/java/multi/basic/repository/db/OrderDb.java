@@ -1,6 +1,6 @@
 package multi.basic.repository.db;
 
-import multi.api.exception.order.OrderDbException;
+import multi.basic.exception.order.OrderDbException;
 import multi.basic.repository.OrderDao;
 import multi.basic.repository.driver.DriverDataBases;
 import multi.domain.Order;

@@ -6,7 +6,7 @@ import multi.api.dto.basket.OrderDto;
 import multi.api.dto.order.OrderRequest;
 import multi.api.dto.order.OrderResponse;
 import multi.api.dto.product.ProductResponse;
-import multi.api.exception.basket.BasketDbException;
+import multi.basic.exception.basket.BasketDbException;
 import multi.basic.mapping.BasketMapper;
 import multi.basic.mapping.OrderMapper;
 import multi.basic.mapping.ProductMapper;

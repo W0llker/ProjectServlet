@@ -3,9 +3,9 @@ package multi.basic.service;
 import multi.api.contract.ClientApi;
 import multi.api.dto.user.UserRequest;
 import multi.api.dto.user.UserResponse;
-import multi.api.exception.client.ClientDbException;
-import multi.api.exception.client.ClientValidatorException;
-import multi.api.exception.client.UserNullException;
+import multi.basic.exception.client.ClientDbException;
+import multi.basic.exception.client.ClientValidatorException;
+import multi.basic.exception.client.UserNullException;
 import multi.basic.mapping.UserMapper;
 import multi.basic.repository.ClientDao;
 import multi.domain.Client;
@@ -23,7 +23,7 @@ public class ClientService implements ClientApi {
     }
 
     @Override
-    public UserResponse authentication(String login, String password) throws UserNullException, ClientDbException {
+    public UserResponse authentication(String login, String password) {
         Client client = repositoryClient.findByLogin(login);
         if (client == null) {
             throw new UserNullException("Данного пользователя нету с таким логином");

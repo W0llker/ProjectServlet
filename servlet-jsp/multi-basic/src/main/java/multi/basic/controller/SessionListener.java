@@ -7,7 +7,7 @@ import multi.api.contract.BasketApi;
 import multi.api.dto.order.OrderResponse;
 import multi.basic.config.ApplicationContext;
 
-public class SessionListener implements HttpSessionListener {
+public class SessionListener implements HttpSessionListener{
     private final BasketApi basketService;
 
     public SessionListener() {

@@ -6,8 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import multi.api.contract.ClientApi;
 import multi.api.dto.user.UserRequest;
+import multi.basic.exception.client.ClientDbException;
+import multi.basic.exception.client.ClientValidatorException;
 import multi.basic.config.ApplicationContext;
-import multi.basic.service.ClientService;
 
 import java.io.IOException;
 
@@ -20,20 +21,21 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("authentication/registration.jsp").include(req,resp);
+        req.getRequestDispatcher("authentication/registration.jsp").include(req, resp);
     }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var name = req.getParameter("name");
         var surName = req.getParameter("surName");
         var login = req.getParameter("login");
         var password = req.getParameter("password");
-        if (name.equals("") || surName.equals("") || login.equals("") || password.equals("")) {
-            req.setAttribute("error","Введите все параметры");
-            req.getRequestDispatcher("authentication/registration.jsp").forward(req,resp);
-        } else {
-            clientService.createClient(new UserRequest(name,surName,login,password));
-            req.getRequestDispatcher("authentication/registration.jsp").forward(req,resp);
+        try {
+            clientService.createClient(new UserRequest(name, surName, login, password));
+            req.getRequestDispatcher("authentication/registration.jsp").forward(req, resp);
+        } catch (ClientValidatorException | ClientDbException e) {
+            req.setAttribute("error", e.getMessage());
+            req.getRequestDispatcher("authentication/registration.jsp").forward(req, resp);
         }
     }
 }

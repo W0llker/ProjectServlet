@@ -23,6 +23,11 @@
         <servlet-name>actionClient</servlet-name>
         <servlet-class>multi.basic.controller.order.OrderServlet</servlet-class>
     </servlet>
+
+    <listener>
+        <listener-class>multi.basic.controller.SessionListener</listener-class>
+    </listener>
+
     <filter>
         <filter-name>admin</filter-name>
         <filter-class>multi.basic.filter.AdminFilter</filter-class>
@@ -38,6 +43,7 @@
     <filter-mapping>
         <filter-name>authentication</filter-name>
         <url-pattern>/actionClient</url-pattern>
+        <url-pattern>/basket</url-pattern>
     </filter-mapping>
 
     <servlet-mapping>

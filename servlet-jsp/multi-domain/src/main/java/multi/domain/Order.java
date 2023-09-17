@@ -28,6 +28,7 @@ public class Order implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
     private void setId(String id) {
         this.id = Long.parseLong(id);
     }
@@ -39,6 +40,7 @@ public class Order implements Serializable {
     public void setUserId(long userId) {
         this.userId = userId;
     }
+
     private void setUserId(String userId) {
         this.userId = Long.parseLong(userId);
     }
@@ -50,7 +52,10 @@ public class Order implements Serializable {
     public void setCost(double cost) {
         this.cost = cost;
     }
-    public void setCost(String cost) {this.cost = Double.parseDouble(cost);}
+
+    public void setCost(String cost) {
+        this.cost = Double.parseDouble(cost);
+    }
 
     public StatusOrder getStatus() {
         return status;
@@ -59,6 +64,7 @@ public class Order implements Serializable {
     public void setStatus(StatusOrder status) {
         this.status = status;
     }
+
     public void setStatus(String status) {
         this.status = StatusOrder.valueOf(status);
     }

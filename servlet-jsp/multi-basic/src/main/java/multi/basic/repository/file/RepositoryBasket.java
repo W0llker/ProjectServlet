@@ -23,7 +23,7 @@ public class RepositoryBasket extends FileWork<Basket> implements BasketDao {
                 Optional<Basket> optional = deserialization().stream().max(Comparator.comparing(Basket::getId));
                 basket.setId(optional.get().getId() + 1);
             } else {
-              basket.setId(0);
+                basket.setId(0);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -38,6 +38,11 @@ public class RepositoryBasket extends FileWork<Basket> implements BasketDao {
         list = deserialization();
         list.removeIf(client -> client.getId() == id);
         serialization(list);
+    }
+
+    @Override
+    public void deleteByOrderId(Long id) {
+
     }
 
     @Override

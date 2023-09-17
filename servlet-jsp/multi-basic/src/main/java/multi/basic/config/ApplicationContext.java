@@ -11,10 +11,6 @@ import multi.basic.mapping.ProductMapper;
 import multi.basic.mapping.UserMapper;
 import multi.basic.repository.db.*;
 import multi.basic.repository.driver.PostgresConnection;
-import multi.basic.repository.file.RepositoryBasket;
-import multi.basic.repository.file.RepositoryClient;
-import multi.basic.repository.file.RepositoryOrder;
-import multi.basic.repository.file.RepositoryProduct;
 import multi.basic.service.BasketService;
 import multi.basic.service.ClientService;
 import multi.basic.service.OrderService;
@@ -27,18 +23,19 @@ import multi.domain.Product;
 public class ApplicationContext {
     private static ApplicationContext applicationContext;
     private final ClientApi clientService;
-    private final ProductApi productServicel;
+    private final ProductApi productService;
     private final OrderApi orderService;
     private final BasketApi basketService;
 
     private ApplicationContext() {
-        clientService = new ClientService(new UserMapper(),new ClientDb(new EntityMapper<>(Client.class),new PostgresConnection()));
-        productServicel = new ProductService(new ProductDb(new PostgresConnection(),new EntityMapper<>(Product.class)),new ProductMapper());
-        orderService = new OrderService(new OrderMapper(),new OrderDb(new PostgresConnection(),new EntityMapper<>(Order.class)),new ProductDb(new PostgresConnection(),new EntityMapper<>(Product.class)),new BasketDb(new PostgresConnection(),new EntityMapper<>(Basket.class)), new BasketMapper(), new ProductMapper());
-        basketService = new BasketService(new BasketDb(new PostgresConnection(),new EntityMapper<>(Basket.class)),new BasketMapper());
+        clientService = new ClientService(new UserMapper(), new ClientDb(new EntityMapper<>(Client.class), new PostgresConnection()));
+        productService = new ProductService(new ProductDb(new PostgresConnection(), new EntityMapper<>(Product.class)), new ProductMapper());
+        orderService = new OrderService(new OrderMapper(), new OrderDb(new PostgresConnection(), new EntityMapper<>(Order.class)), new ProductDb(new PostgresConnection(), new EntityMapper<>(Product.class)), new BasketDb(new PostgresConnection(), new EntityMapper<>(Basket.class)), new BasketMapper(), new ProductMapper());
+        basketService = new BasketService(new BasketDb(new PostgresConnection(), new EntityMapper<>(Basket.class)), new BasketMapper());
     }
+
     public static synchronized ApplicationContext getInstance() {
-        if(applicationContext == null) {
+        if (applicationContext == null) {
             applicationContext = new ApplicationContext();
         }
         return applicationContext;
@@ -48,8 +45,8 @@ public class ApplicationContext {
         return clientService;
     }
 
-    public ProductApi getProductServicel() {
-        return productServicel;
+    public ProductApi getProductService() {
+        return productService;
     }
 
     public OrderApi getOrderService() {

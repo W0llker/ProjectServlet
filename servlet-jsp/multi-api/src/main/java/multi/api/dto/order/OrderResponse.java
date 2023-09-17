@@ -50,4 +50,14 @@ public class OrderResponse {
     public void setStatus(StatusOrder status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "OrderResponse{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", cost=" + cost +
+                ", status=" + status +
+                '}';
+    }
 }

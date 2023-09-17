@@ -1,28 +1,23 @@
 package multi.basic.repository.db;
 
+import multi.basic.exception.product.ProductDbException;
 import multi.basic.repository.ProductDao;
 import multi.basic.repository.driver.DriverDataBases;
-import multi.domain.Client;
 import multi.domain.Product;
-import multi.domain.Role;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
-public class ProductDb implements ProductDao {
+public class ProductDb extends DbWork<Product> implements ProductDao {
     private final DriverDataBases driverDataBases;
-    private final EntityMapper<Product> entityMapper;
 
     public ProductDb(DriverDataBases driverDataBases, EntityMapper<Product> entityMapper) {
+        super(entityMapper);
         this.driverDataBases = driverDataBases;
-        this.entityMapper = entityMapper;
     }
 
     @Override
@@ -39,7 +34,7 @@ public class ProductDb implements ProductDao {
             preparedStatement.setDouble(5, good.getPrice());
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ProductDbException("Невозможно получить данные о продуктах");
         }
         return good;
     }
@@ -53,7 +48,7 @@ public class ProductDb implements ProductDao {
             Long id = resultSet.getLong(1);
             return id + 1;
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ProductDbException("Невозможно получить данные о продуктах");
         }
 
     }
@@ -66,7 +61,7 @@ public class ProductDb implements ProductDao {
             preparedStatement.setLong(1, id);
             preparedStatement.execute();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            throw new ProductDbException("Невозможно удалить данные");
         }
     }
 
@@ -76,16 +71,10 @@ public class ProductDb implements ProductDao {
             Connection connection = driverDataBases.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM storesch.products p WHERE p.id=?");
             preparedStatement.setLong(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            resultSet.next();
-            Field[] fields = Product.class.getDeclaredFields();
-            Map<String, String> map = new LinkedHashMap<>();
-            for (int i = 1; i < resultSet.getMetaData().getColumnCount() + 1; i++) {
-                map.put(fields[i].getName(), resultSet.getString(i));
-            }
-            return entityMapper.mapperInEntity(map);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+            List<Product> products = getEntity(preparedStatement.executeQuery(), new Product());
+            return products.size() > 0 ? products.get(0) : null;
+        } catch (SQLException e) {
+            throw new ProductDbException("Невозможно найти данные");
         }
     }
 
@@ -96,6 +85,19 @@ public class ProductDb implements ProductDao {
             products.add(find(id));
         }
         return products;
+    }
+
+    @Override
+    public Product findProductByCode(Long code) {
+        try {
+            Connection connection = driverDataBases.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM storesch.products p WHERE p.code_product=?");
+            preparedStatement.setLong(1, code);
+            List<Product> products = getEntity(preparedStatement.executeQuery(), new Product());
+            return products.size() > 0 ? products.get(0) : null;
+        } catch (SQLException e) {
+            throw new ProductDbException("Невозможно найти продукт по коду");
+        }
     }
 
     @Override
@@ -110,28 +112,18 @@ public class ProductDb implements ProductDao {
             preparedStatement.setLong(5, product.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new ProductDbException("Невозможно обновить продукт");
         }
     }
 
     @Override
     public List<Product> getAllProduct() {
         try {
-            List<Product> products = new ArrayList<>();
             Connection connection = driverDataBases.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM storesch.products");
-            ResultSet resultSet = preparedStatement.executeQuery();
-            Field[] fields = Product.class.getDeclaredFields();
-            while (resultSet.next()) {
-                Map<String, String> map = new LinkedHashMap<>();
-                for (int i = 1; i < resultSet.getMetaData().getColumnCount() + 1; i++) {
-                    map.put(fields[i].getName(), resultSet.getString(i));
-                }
-                products.add(entityMapper.mapperInEntity(map));
-            }
-            return products;
-        } catch (Exception e) {
-            throw new RuntimeException("Не удалось получить данные о клиентах");
+            return getEntity(preparedStatement.executeQuery(), new Product());
+        } catch (SQLException e) {
+            throw new ProductDbException("Невозможно получить данные о продуктах");
         }
     }
 }

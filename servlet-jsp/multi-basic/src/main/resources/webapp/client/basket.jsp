@@ -94,14 +94,17 @@
       </form>
     </li>
   </ul>
-  </c:forEach>
-  </c:if>
+</c:forEach>
+</c:if>
   <div class="total-price">
   <c:set var="ternaryResult" value="${(requestScope.result !='false') ? '' : 'disable'}" />
       Общая стоимость: <c:out value="${orderDto.cost}"/> BYN
   </div>
   <form action="/basket" method="post">
     <input type="hidden" name="place_an_order" value="${ternaryResult}">
+    <input type="hidden" name="id_order" value="${orderDto.id}">
+    <input type="hidden" name="id_user" value="${orderDto.userId}">
+    <input type="hidden" name="cost" value="${orderDto.cost}">
     <button class="checkout-button" type="submit" >Оформить заказ</button>
   </form>
 </body>

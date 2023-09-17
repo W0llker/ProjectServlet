@@ -23,6 +23,7 @@ public class Client implements Serializable {
         this.login = login;
         this.password = password;
     }
+
     public long getId() {
         return id;
     }
@@ -75,6 +76,7 @@ public class Client implements Serializable {
     public void setRole(Role role) {
         this.role = role;
     }
+
     private void setRole(String role) {
         this.setRole(Role.valueOf(role));
     }

@@ -19,9 +19,9 @@ public class AdminFilter implements Filter {
         } else if (session.getAttribute("userAuth") == null) {
             req.setAttribute("error", "Вы не прошли авторизацию");
             req.getRequestDispatcher("error/error.jsp").forward(req, servletResponse);
-        }else {
+        } else {
             UserResponse user = (UserResponse) session.getAttribute("userAuth");
-            if(user.getRole() == Role.ADMIN) filterChain.doFilter(req,servletResponse);
+            if (user.getRole() == Role.ADMIN) filterChain.doFilter(req, servletResponse);
             else {
                 req.setAttribute("error", "У вас не достаточно прав");
                 req.getRequestDispatcher("error/error.jsp").forward(req, servletResponse);

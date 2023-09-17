@@ -34,6 +34,11 @@ public class RepositoryClient extends FileWork<Client> implements ClientDao {
         serialization(list);
     }
 
+    @Override
+    public Client findByLogin(String login) {
+        return null;
+    }
+
     public void delete(long id) {
         list = deserialization();
         list.removeIf(client -> client.getId() == id);

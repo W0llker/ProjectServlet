@@ -27,9 +27,11 @@ public class Basket implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
     private void setId(String id) {
         this.id = Long.parseLong(id);
     }
+
     private void setOrderId(String orderId) {
         this.orderId = Long.parseLong(orderId);
     }
@@ -49,6 +51,7 @@ public class Basket implements Serializable {
     public void setProductId(long productId) {
         this.productId = productId;
     }
+
     private void setProductId(String productId) {
         this.productId = Long.parseLong(productId);
     }
@@ -60,6 +63,7 @@ public class Basket implements Serializable {
     public void setCount(int count) {
         this.count = count;
     }
+
     private void setCount(String count) {
         this.count = Integer.parseInt(count);
     }
